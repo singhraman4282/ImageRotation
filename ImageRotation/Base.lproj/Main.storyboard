@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ImageRotation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" image="jaguar" translatesAutoresizingMaskIntoConstraints="NO" id="hVB-fJ-z5m">
+                                <rect key="frame" x="18" y="236.5" width="339" height="194"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="339" id="jrU-xp-LtH"/>
+                                    <constraint firstAttribute="height" constant="194" id="qHa-al-smK"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wxx-66-dtF">
+                                <rect key="frame" x="165" y="514" width="45" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="Z8p-8b-vNT"/>
+                                    <constraint firstAttribute="height" constant="30" id="rVX-BN-ufQ"/>
+                                </constraints>
+                                <state key="normal" title="Rotate"/>
+                                <connections>
+                                    <action selector="rotateImageTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="diG-Dz-BJZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="hVB-fJ-z5m" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="GHf-nt-HsQ"/>
+                            <constraint firstItem="hVB-fJ-z5m" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="U43-YH-beR"/>
+                            <constraint firstItem="Wxx-66-dtF" firstAttribute="top" secondItem="hVB-fJ-z5m" secondAttribute="bottom" constant="83.5" id="WM1-h6-j3G"/>
+                            <constraint firstItem="Wxx-66-dtF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="axJ-Bb-hFd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="hVB-fJ-z5m" id="L64-AA-uDo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="jaguar" width="600" height="344"/>
+    </resources>
+</document>
