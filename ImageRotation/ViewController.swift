@@ -43,22 +43,6 @@ class ViewController: UIViewController {
         return properlyRotatedImage
     }
     
-    private func cropImage( image:UIImage , cropRect:CGRect) -> UIImage
-    {
-        UIGraphicsBeginImageContextWithOptions(cropRect.size, false, 0);
-        let context = UIGraphicsGetCurrentContext();
-        
-        context?.translateBy(x: 0.0, y: image.size.height);
-        context?.scaleBy(x: 1.0, y: -1.0);
-        context?.draw(image.cgImage!, in: CGRect(x:0, y:0, width:image.size.width, height:image.size.height), byTiling: false);
-        context?.clip(to: [cropRect]);
-        
-        let croppedImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        return croppedImage!;
-    }
-    
     func cropThisImage(byCroppingImage image: UIImage?, to size: CGSize) -> UIImage? {
         let refWidth = image?.size.width
         let refHeight = image?.size.height
