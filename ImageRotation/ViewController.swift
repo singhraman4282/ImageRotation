@@ -22,8 +22,14 @@ class ViewController: UIViewController {
     @IBAction func rotateImageTapped(_ sender: UIButton) {
         //        let rotatedImage = imageView.image?.rotate(radians: .pi/2)
         
-        let rotatedImage = rotateImageAppropriately(imageView.image)
-        imageView.image = rotatedImage
+        guard imageView.image == imageView.image else { return }
+        
+//        let rotatedImage = rotateImageAppropriately(imageView.image)
+//        let croppedImage = cropImage(image: imageView.image!, cropRect: CGRect(x: (imageView.image?.size.width)!/4, y: (imageView.image?.size.height)!/4, width: (imageView.image?.size.width)!/2, height: (imageView.image?.size.height)!/2))
+        
+        let croppedImage = cropThisImage(byCroppingImage: imageView.image!, to: CGSize(width: imageView.image!.size.width/2, height: imageView.image!.size.height/2))
+        
+        imageView.image = croppedImage
     }
     
     
@@ -36,6 +42,38 @@ class ViewController: UIViewController {
         
         return properlyRotatedImage
     }
+    
+    private func cropImage( image:UIImage , cropRect:CGRect) -> UIImage
+    {
+        UIGraphicsBeginImageContextWithOptions(cropRect.size, false, 0);
+        let context = UIGraphicsGetCurrentContext();
+        
+        context?.translateBy(x: 0.0, y: image.size.height);
+        context?.scaleBy(x: 1.0, y: -1.0);
+        context?.draw(image.cgImage!, in: CGRect(x:0, y:0, width:image.size.width, height:image.size.height), byTiling: false);
+        context?.clip(to: [cropRect]);
+        
+        let croppedImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        return croppedImage!;
+    }
+    
+    func cropThisImage(byCroppingImage image: UIImage?, to size: CGSize) -> UIImage? {
+        let refWidth = image?.size.width
+        let refHeight = image?.size.height
+        let x = (refWidth! - size.width) / 2.0
+        let y = (refHeight! - size.height) / 2.0
+        let cropRect = CGRect(x: CGFloat(x), y: CGFloat(y), width: size.width, height: size.height)
+        let imageRef = image?.cgImage?.cropping(to: cropRect)
+        var cropped: UIImage? = nil
+        if let aRef = imageRef {
+            cropped = UIImage(cgImage: aRef, scale: 0.0, orientation: (image?.imageOrientation)!)
+        }
+        
+        return cropped
+    }
+    
     
     
 }
